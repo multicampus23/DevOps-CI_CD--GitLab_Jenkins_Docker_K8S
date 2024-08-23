@@ -1,0 +1,31 @@
+node {
+    APP_NAME = 'myapp'
+    RELEASE = '1.0.0'
+    DOCKER_USER = 'Docker_HUB_ID'
+    DOCKER_PASS = 'dockerlogin'
+    IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+    IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+    stage("Cleanup Workspace"){
+        cleanWs()
+    }
+    stage("Checkout from SCM"){
+        git branch: 'main', credentialsId: 'gitlab_idpwd', url: 'http://192.168.15.20/root/myapp.git'
+    }
+    
+    stage("실행권한 추가 : ./gradlew"){
+        sh "chmod 755 gradlew"
+    }
+    stage("clean and build ") {
+        sh "./gradlew clean bootJar"
+    }  
+    stage("Test") {
+        sh "./gradlew test"
+    }
+
+    stage("Build Docker Image") {
+    	docker_image = docker.build "${IMAGE_NAME}:${IMAGE_TAG}"        
+    }
+    stage("Docker Compose") {
+    	sh "IMAGE_NAME=${IMAGE_NAME}:${IMAGE_TAG} docker compose up -d"   
+    }
+}
