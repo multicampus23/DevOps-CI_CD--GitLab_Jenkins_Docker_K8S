@@ -33,7 +33,12 @@ sudo apt install net-tools vim nano iputils-ping
       sudo reboot
 
 ### Setting HostName & Hosts & Network
+* HostName Setting (/etc/hostname , /etc/hosts)
+sudo vi /etc/hostname 
 
+sudo vi /etc/hosts 
+
+* Network Setting
 cidr : 192.168.15.0/24
 ip : 192.168.15.x
 gateway : 192.168.15.1
@@ -92,10 +97,10 @@ https://about.gitlab.com/install/#ubuntu
       sudo apt-get update
       sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
       curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
-      sudo apt-get install gitlab-ce
-      sudo nano etc/gitlab/gitlab.rb
+      sudo apt-get install -y gitlab-ce
+      sudo vi /etc/gitlab/gitlab.rb
            => EXTERNAL_URL="http://192.168.15.20"
-      gitlab-ctl reconfigure
+      sudo gitlab-ctl reconfigure
 
       sudo cat /etc/gitlab/initial_root_password
 
@@ -157,7 +162,7 @@ https://docs.docker.com/engine/install/ubuntu/
 
 ### Jenkins & Docker
 
-      sudo apt install git maven
+      sudo apt install -y git maven
 
 ### Service provided by Kubernetes
 * Self-healing
