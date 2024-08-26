@@ -36,16 +36,16 @@ sudo apt install net-tools vim nano iputils-ping
 
 * HostName Setting (/etc/hostname , /etc/hosts)
 
-    sudo vi /etc/hostname 
+      sudo vi /etc/hostname 
 
-    sudo vi /etc/hosts 
+      sudo vi /etc/hosts 
 
 * Network Setting
 
-    cidr : 192.168.15.0/24
-    ip : 192.168.15.x
-    gateway : 192.168.15.1
-    dns : 8.8.8.8   168.126.63.1
+      cidr : 192.168.15.0/24
+      ip : 192.168.15.x
+      gateway : 192.168.15.1
+      dns : 8.8.8.8   168.126.63.1
 
 /etc/netplan/00-installer-config.yaml
 
